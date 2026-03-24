@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuickTrip | Smart Travel Booking</title>
+  <link rel="stylesheet" href="trail.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Quick<span>Trip</span></div>
+  <nav class="nav">
+    <a href="#">Home</a>
+    <a href="#services">Services</a>
+    <a href="#booking">Book Trip</a>
+    <a href="join-driver.html">Join as Driver</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Trusted rides across Jharkhand and nearby states</p>
+    <h1>Smart Travel. Shared Comfort.</h1>
+    <p>QuickTrip is a technology-enabled booking and communication platform that helps customers connect with independent drivers for personal travel.</p>
+    <a href="#booking" class="btn">Book Your Trip</a>
+  </div>
+</section>
+
+<section class="pincode-section">
+  <div class="pincode-shell">
+    <div class="pincode-copy">
+      <p class="pincode-tag">Service availability</p>
+      <h2>Check Service in Your Area</h2>
+      <p>Enter your 6-digit pincode to see if QuickTrip service is available in your area before choosing Dhanbad or Bokaro.</p>
+    </div>
+
+    <div class="pincode-card">
+      <label for="pincodeInput">Enter Pincode</label>
+      <div class="pincode-form">
+        <input type="text" id="pincodeInput" maxlength="6" placeholder="Enter 6-digit pincode">
+        <button type="button" class="pincode-btn" onclick="checkPincode()">Check Availability</button>
+      </div>
+      <p id="pincodeResult" class="pincode-result">Check if service is available in Dhanbad or Bokaro.</p>
+    </div>
+  </div>
+</section>
+
+<section class="city-section">
+  <h2>Choose Your Service Area</h2>
+  <p class="section-copy">Pick your district to see dedicated cars, service options, and booking details.</p>
+  <div class="city-container">
+    <a class="city-card dhanbad-card" href="dhanbad.html">
+      <span class="city-label">Dhanbad</span>
+      <span class="city-meta">Local, outstation, and wedding rides</span>
+    </a>
+    <a class="city-card bokaro-card" href="bokaro.html">
+      <span class="city-label">Bokaro</span>
+      <span class="city-meta">City trips, station pickup, and family travel</span>
+    </a>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="booking-shell">
+    <div class="booking-copy">
+      <p class="eyebrow">Quick booking</p>
+      <h2>Book Your Trip</h2>
+      <p>Share your route, date, and preferred car. QuickTrip may pass your request to an available independent driver, and you can check the trip distance through Google Maps before sending your booking request.</p>
+      <div class="support-box">
+        <p class="support-label">Fast booking help</p>
+        <h3>Need urgent support before booking?</h3>
+        <p>Talk to QuickTrip directly for route help, car availability, night travel questions, or quick booking assistance in Dhanbad and Bokaro.</p>
+        <div class="support-actions">
+          <a class="whatsapp-btn support-whatsapp" href="https://wa.me/918409758097?text=Hello%20QuickTrip,%20I%20need%20fast%20booking%20help" target="_blank">WhatsApp Help</a>
+          <a class="support-call" href="tel:+918409758097">Call Now</a>
+        </div>
+      </div>
+    </div>
+    <form class="booking-form">
+      <input type="text" id="fromLocation" placeholder="From Location" required>
+      <input type="text" id="toLocation" placeholder="To Location" required>
+      <input type="date" id="travelDate" required>
+      <select id="car" required>
+        <option value="">Select Car</option>
+        <option>Alto</option>
+        <option>Dzire</option>
+        <option>Ertiga</option>
+      </select>
+      <div class="map-actions">
+        <button type="button" class="map-btn" onclick="openGoogleMapsRoute()">Open in Google Maps</button>
+        <button type="button" class="map-btn secondary-map-btn" onclick="calculateTripDistance()">Check KM</button>
+      </div>
+      <p id="distanceResult" class="distance-result">Enter pickup and destination to check route distance.</p>
+      <label class="consent-check">
+        <input type="checkbox" id="bookingConsent">
+        <span>I agree to the <a href="privacy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms & Conditions</a>, and confirm the booking details are accurate.</span>
+      </label>
+      <button type="button" class="whatsapp-btn booking-submit" onclick="sendBookingRequest()">Send Booking Request</button>
+    </form>
+  </div>
+</section>
+
+<section class="cost-sharing-section">
+  <div class="cost-sharing-box">
+    <div class="cost-sharing-copy">
+      <p class="eyebrow cost-eyebrow">Trip pricing note</p>
+      <h2>Fuel & Travel Cost Sharing</h2>
+      <p>Trip expenses are mutually decided based on distance, fuel usage, route conditions, and travel time. No fixed rates are applied on the website.</p>
+      <p class="cost-sharing-note">Cost sharing may vary depending on route, distance, timing, tolls, parking, waiting time, and trip requirements.</p>
+    </div>
+  </div>
+</section>
+
+<section class="why-choose-section">
+  <div class="why-choose-box">
+    <p class="eyebrow why-eyebrow">Why choose QuickTrip</p>
+    <h2>Why Choose QuickTrip?</h2>
+    <div class="why-choose-grid">
+      <div class="why-card">
+        <h3>Clean & Well-Maintained Cars</h3>
+        <p>Travel with cars that are presented in neat condition and prepared for comfortable trips.</p>
+      </div>
+      <div class="why-card">
+        <h3>Verified Drivers</h3>
+        <p>QuickTrip works with independent drivers and may request basic document verification before sharing trip leads.</p>
+      </div>
+      <div class="why-card">
+        <h3>On-Time Pickup</h3>
+        <p>We aim to connect customers with drivers who can respond quickly and manage trip timing properly.</p>
+      </div>
+      <div class="why-card">
+        <h3>Simple Call Booking</h3>
+        <p>Customers can contact QuickTrip directly on call or WhatsApp for easy booking and quick support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-booking-section">
+  <div class="how-booking-box">
+    <p class="eyebrow how-eyebrow">Booking process</p>
+    <h2>How Booking Works</h2>
+    <div class="how-booking-grid">
+      <div class="how-step-card">
+        <span class="step-number">01</span>
+        <h3>Enter Trip Details</h3>
+        <p>Fill your from location, to location, travel date, and preferred car in the booking section.</p>
+      </div>
+      <div class="how-step-card">
+        <span class="step-number">02</span>
+        <h3>Check Route & Distance</h3>
+        <p>Use the Google Maps option to review the route and approximate travel distance before booking.</p>
+      </div>
+      <div class="how-step-card">
+        <span class="step-number">03</span>
+        <h3>Send Booking Request</h3>
+        <p>Your request is shared through WhatsApp with your trip details, selected car, and route information.</p>
+      </div>
+      <div class="how-step-card">
+        <span class="step-number">04</span>
+        <h3>Connect with Driver</h3>
+        <p>QuickTrip may pass your request to an available independent driver for confirmation and trip coordination.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+  <div class="faq-box">
+    <p class="eyebrow faq-eyebrow">Quick answers</p>
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-grid">
+      <details class="faq-card" open>
+        <summary>Payment kaise hoga?</summary>
+        <p>Trip payment driver confirmation ke baad mutually coordinated hota hai. Fare, toll, parking, waiting, aur route conditions ke hisab se final amount decide kiya ja sakta hai.</p>
+      </details>
+      <details class="faq-card">
+        <summary>Driver kab confirm hoga?</summary>
+        <p>Booking request WhatsApp se bhejne ke baad QuickTrip available independent driver ke saath coordinate karta hai. Confirmation usually route, time, aur car availability check karne ke baad diya jata hai.</p>
+      </details>
+      <details class="faq-card">
+        <summary>Outstation booking possible hai?</summary>
+        <p>Haan, outstation trips possible hain subject to driver availability, route plan, and trip timing. Long-distance booking ke liye pehle se request bhejna better rahega.</p>
+      </details>
+      <details class="faq-card">
+        <summary>Night travel available hai?</summary>
+        <p>Night travel selected routes par available ho sakta hai, lekin ye driver availability aur safety considerations par depend karega. Immediate confirmation ke liye call ya WhatsApp best rahega.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <h2>Our Services</h2>
+  <div class="service-card-container">
+    <div class="service-tile city-travel-card">
+      <h3>City Travel</h3>
+      <p>Daily rides within the city at an affordable price.</p>
+    </div>
+    <div class="service-tile outstation-card">
+      <h3>Outstation Trips</h3>
+      <p>Comfortable long-distance journeys with trusted drivers.</p>
+    </div>
+    <div class="service-tile events-card">
+      <h3>Wedding & Events</h3>
+      <p>Special cars for weddings, family programs, and functions.</p>
+    </div>
+  </div>
+</section>
+
+<section class="driver-preview-section">
+  <div class="driver-preview-box">
+    <p class="eyebrow preview-eyebrow">Driver partner program</p>
+    <h2>Drive with QuickTrip</h2>
+    <p>Join QuickTrip to receive trip leads, grow your local customer network, and start with a simple driver onboarding process.</p>
+    <a class="driver-join-btn" href="join-driver.html">Open Driver Page</a>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Contact Us</h2>
+  <p class="contact-copy">Talk to QuickTrip directly for booking help, route questions, and fast support in Dhanbad and Bokaro.</p>
+  <div class="contact-actions">
+    <a class="whatsapp-btn" href="https://wa.me/918409758097?text=Hello%20QuickTrip,%20I%20want%20to%20book%20a%20trip" target="_blank">Chat on WhatsApp</a>
+    <a class="contact-phone" href="tel:+918409758097">Call Now: +91 84097 58097</a>
+  </div>
+  <p class="contact-highlight">Fast response for trip booking, fare details, and service availability.</p>
+</section>
+
+<section class="legal-note-section">
+  <div class="legal-note-box">
+    <h2>Platform Notice</h2>
+    <p>QuickTrip is a technology-enabled booking and communication platform that helps customers connect with independent drivers for personal travel.</p>
+    <p>QuickTrip does not own, lease, or operate vehicles, does not employ drivers as transport operators, and does not directly provide taxi or transportation services.</p>
+    <p>Any trip is provided by the independent driver who accepts the booking request, and each driver remains independently responsible for permits, insurance, fitness, taxes, pricing, and compliance with applicable transport and motor vehicle laws.</p>
+    <p>This website notice is provided for transparency only and must not be treated as government approval, legal exemption, or a substitute for any licence, permit, registration, or compliance requirement that may apply.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <p class="footer-note">QuickTrip is a technology-enabled booking platform. We do not own, lease, or operate vehicles, and trips are provided by independent drivers who remain responsible for legal compliance.</p>
+  <p>&copy; 2026 QuickTrip. All Rights Reserved.</p>
+  <p>
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="grievance.html">Grievance</a> |
+    <a href="compliance.html">Safety & Compliance</a>
+  </p>
+</footer>
+
+<a class="floating-whatsapp" href="https://wa.me/918409758097?text=Hello%20QuickTrip,%20I%20want%20quick%20booking%20help" target="_blank" aria-label="Chat on WhatsApp">
+  <span class="floating-whatsapp-icon">WA</span>
+  <span class="floating-whatsapp-text">WhatsApp</span>
+</a>
+
+<script>
+const GOOGLE_MAPS_API_KEY = '';
+const serviceAreas = {
+  dhanbad: [
+    '826001', '826004', '826005', '826009',
+    '828109', '828202', '828205', '828206', '828207'
+  ],
+  bokaro: [
+    '827001', '827002', '827003', '827004', '827006', '827009', '827010',
+    '828301', '828302', '828303', '828304', '828305', '828306', '828307',
+    '828308', '828309', '828310', '828311', '828312', '828313', '828314'
+  ]
+};
+
+function getRouteLocations() {
+  const from = document.getElementById('fromLocation').value.trim();
+  const to = document.getElementById('toLocation').value.trim();
+  return { from, to };
+}
+
+function getGoogleMapsLink(from, to) {
+  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(from)}&destination=${encodeURIComponent(to)}&travelmode=driving`;
+}
+
+function setDistanceMessage(message, type) {
+  const result = document.getElementById('distanceResult');
+  result.textContent = message;
+  result.className = `distance-result ${type || ''}`.trim();
+}
+
+function openGoogleMapsRoute() {
+  const { from, to } = getRouteLocations();
+
+  if (!from || !to) {
+    setDistanceMessage('Please enter both From Location and To Location first.', 'error');
+    return;
+  }
+
+  const mapUrl = getGoogleMapsLink(from, to);
+  window.open(mapUrl, '_blank');
+  setDistanceMessage('Google Maps route opened in a new tab.', 'success');
+}
+
+function calculateTripDistance() {
+  const { from, to } = getRouteLocations();
+
+  if (!from || !to) {
+    setDistanceMessage('Please enter both From Location and To Location first.', 'error');
+    return;
+  }
+
+  if (!window.google || !google.maps || !google.maps.DistanceMatrixService) {
+    openGoogleMapsRoute();
+    setDistanceMessage('Direct Google Maps opened. Add a Google Maps API key to show automatic KM inside this page.', 'warning');
+    return;
+  }
+
+  const service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [from],
+      destinations: [to],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC
+    },
+    (response, status) => {
+      if (status !== 'OK' || !response.rows[0].elements[0] || response.rows[0].elements[0].status !== 'OK') {
+        setDistanceMessage('Unable to calculate distance right now. Please use Google Maps directly.', 'error');
+        return;
+      }
+
+      const element = response.rows[0].elements[0];
+      setDistanceMessage(`Approximate road distance: ${element.distance.text}. Estimated time: ${element.duration.text}.`, 'success');
+    }
+  );
+}
+
+function sendBookingRequest() {
+  const { from, to } = getRouteLocations();
+  const date = document.getElementById('travelDate').value;
+  const car = document.getElementById('car').value;
+  const consent = document.getElementById('bookingConsent').checked;
+  const distanceText = document.getElementById('distanceResult').textContent.trim();
+
+  if (!from || !to || !date || !car) {
+    setDistanceMessage('Please fill From Location, To Location, Travel Date, and Car first.', 'error');
+    return;
+  }
+
+  if (!consent) {
+    setDistanceMessage('Please accept the Privacy Policy and Terms & Conditions before sending the booking request.', 'error');
+    return;
+  }
+
+  const mapLink = getGoogleMapsLink(from, to);
+  const distanceLine = distanceText && !distanceText.startsWith('Enter pickup')
+    ? `Distance Details: ${distanceText}`
+    : 'Distance Details: Please check the Google Maps route link below.';
+
+  const message = [
+    'Hello QuickTrip, I want to book a trip.',
+    `From Location: ${from}`,
+    `To Location: ${to}`,
+    `Travel Date: ${date}`,
+    `Selected Car: ${car}`,
+    distanceLine,
+    `Google Maps Route: ${mapLink}`
+  ].join('\n');
+
+  const whatsappUrl = `https://wa.me/918409758097?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, '_blank');
+}
+
+if (GOOGLE_MAPS_API_KEY) {
+  const script = document.createElement('script');
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
+  script.async = true;
+  document.head.appendChild(script);
+}
+
+function checkPincode() {
+  const input = document.getElementById('pincodeInput');
+  const result = document.getElementById('pincodeResult');
+  const pincode = input.value.trim();
+
+  if (!/^\d{6}$/.test(pincode)) {
+    result.textContent = 'Please enter a valid 6-digit pincode.';
+    result.className = 'pincode-result error';
+    return;
+  }
+
+  if (serviceAreas.dhanbad.includes(pincode)) {
+    result.textContent = 'Service available in Dhanbad for this pincode.';
+    result.className = 'pincode-result success';
+    return;
+  }
+
+  if (serviceAreas.bokaro.includes(pincode)) {
+    result.textContent = 'Service available in Bokaro for this pincode.';
+    result.className = 'pincode-result success';
+    return;
+  }
+
+  result.textContent = 'Service is not currently listed for this pincode. Please contact QuickTrip on WhatsApp.';
+  result.className = 'pincode-result warning';
+}
+</script>
+
+</body>
+</html>

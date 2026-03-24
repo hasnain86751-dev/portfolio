@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join as Driver | QuickTrip</title>
+  <link rel="stylesheet" href="trail.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Quick<span>Trip</span></div>
+  <nav class="nav">
+    <a href="trail.html">Home</a>
+    <a href="trail.html#services">Services</a>
+    <a href="trail.html#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="driver-section driver-page-hero">
+  <div class="driver-shell">
+    <div class="driver-copy">
+      <p class="eyebrow">Driver partner program</p>
+      <h2>Join as a Driver</h2>
+      <p>QuickTrip helps independent drivers receive customer booking requests for personal travel, outstation bookings, and family events in Dhanbad, Bokaro, and nearby areas.</p>
+      <a class="driver-join-btn" href="https://wa.me/918409758097?text=Hello%20QuickTrip,%20I%20want%20to%20join%20as%20a%20driver." target="_blank">Join on WhatsApp</a>
+      <p class="driver-note">Driver onboarding may require document verification before trip leads are shared.</p>
+    </div>
+
+    <div class="driver-benefits">
+      <article class="driver-benefit-card">
+        <h3>More Booking Leads</h3>
+        <p>Get direct customer trip inquiries for local rides, outstation trips, and event bookings.</p>
+      </article>
+
+      <article class="driver-benefit-card">
+        <h3>Flexible Work</h3>
+        <p>Choose the rides that match your car, route, and availability without fixed duty hours.</p>
+      </article>
+
+      <article class="driver-benefit-card">
+        <h3>Grow Your Earnings</h3>
+        <p>Take more confirmed rides and build a stronger local customer network through QuickTrip.</p>
+      </article>
+
+      <article class="driver-benefit-card">
+        <h3>Simple Joining</h3>
+        <p>Connect with QuickTrip on WhatsApp, share your vehicle details, and start receiving trip requests.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="driver-form-section">
+  <div class="driver-form-shell">
+    <div class="driver-form-copy">
+      <p class="eyebrow form-eyebrow">Driver declaration</p>
+      <h2>Driver Registration Request</h2>
+      <p>Share your basic details with QuickTrip. By sending this request, you confirm that the information you provide is accurate and that your documents are valid to the best of your knowledge.</p>
+    </div>
+
+    <form class="driver-form-card">
+      <input type="text" id="driverName" placeholder="Driver Name" required>
+      <input type="text" id="driverPhone" placeholder="Phone Number" required>
+      <input type="text" id="driverDistrict" placeholder="District / Area" required>
+      <input type="text" id="driverVehicle" placeholder="Vehicle Model" required>
+      <label class="consent-check dark-consent">
+        <input type="checkbox" id="driverConsent">
+        <span>I confirm that my licence, vehicle documents, insurance, and other applicable records are valid, and I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a> and <a href="privacy.html" target="_blank">Privacy Policy</a>.</span>
+      </label>
+      <p id="driverFormResult" class="driver-form-result">Fill your details and send your driver request on WhatsApp.</p>
+      <button type="button" class="driver-join-btn driver-form-btn" onclick="sendDriverJoinRequest()">Send Driver Request</button>
+    </form>
+  </div>
+</section>
+
+<section class="compliance-section">
+  <div class="compliance-box">
+    <h2>Driver Compliance Requirements</h2>
+    <p>To help keep the platform safer and more transparent, QuickTrip may ask drivers to keep the following documents valid and available before receiving trip leads:</p>
+    <div class="compliance-grid">
+      <div class="compliance-item">Valid driving licence</div>
+      <div class="compliance-item">Vehicle registration certificate</div>
+      <div class="compliance-item">Active insurance</div>
+      <div class="compliance-item">PUC certificate</div>
+      <div class="compliance-item">Permit or fitness documents, if applicable</div>
+      <div class="compliance-item">Accurate vehicle and contact details</div>
+    </div>
+    <p class="compliance-note">Drivers remain independently responsible for permits, insurance, taxes, fitness, and all applicable transport and motor vehicle law compliance.</p>
+  </div>
+</section>
+
+<section class="legal-note-section compact-legal">
+  <div class="legal-note-box">
+    <h2>Platform Notice</h2>
+    <p>QuickTrip is a technology-enabled booking and communication platform connecting customers with independent drivers for personal travel.</p>
+    <p>QuickTrip does not own, lease, or operate vehicles, does not employ drivers as transport operators, and does not directly provide taxi or transportation services.</p>
+    <p>Drivers using QuickTrip remain independently responsible for permits, insurance, taxes, fitness, pricing, and compliance with applicable transport and motor vehicle laws.</p>
+    <p>This notice is provided for transparency only and must not be treated as government approval, legal exemption, or a substitute for any required licence, permit, registration, or compliance requirement.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Driver Support</h2>
+  <p class="contact-copy">Need help joining QuickTrip as a driver? Contact us directly for onboarding details and document guidance.</p>
+  <div class="contact-actions">
+    <a class="whatsapp-btn" href="https://wa.me/918409758097?text=Hello%20QuickTrip,%20I%20want%20to%20join%20as%20a%20driver." target="_blank">Chat on WhatsApp</a>
+    <a class="contact-phone" href="tel:+918409758097">Call Now: +91 84097 58097</a>
+  </div>
+  <p class="contact-highlight">Quick support for joining, document verification, and trip lead information.</p>
+</section>
+
+<footer class="footer">
+  <p class="footer-note">QuickTrip is a technology-enabled booking platform. We do not own, lease, or operate vehicles, and trips are provided by independent drivers who remain responsible for legal compliance.</p>
+  <p>&copy; 2026 QuickTrip. All Rights Reserved.</p>
+  <p>
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="grievance.html">Grievance</a> |
+    <a href="compliance.html">Safety & Compliance</a>
+  </p>
+</footer>
+
+<script>
+function setDriverFormMessage(message, type) {
+  const result = document.getElementById('driverFormResult');
+  result.textContent = message;
+  result.className = `driver-form-result ${type || ''}`.trim();
+}
+
+function sendDriverJoinRequest() {
+  const name = document.getElementById('driverName').value.trim();
+  const phone = document.getElementById('driverPhone').value.trim();
+  const district = document.getElementById('driverDistrict').value.trim();
+  const vehicle = document.getElementById('driverVehicle').value.trim();
+  const consent = document.getElementById('driverConsent').checked;
+
+  if (!name || !phone || !district || !vehicle) {
+    setDriverFormMessage('Please fill all driver details first.', 'error');
+    return;
+  }
+
+  if (!consent) {
+    setDriverFormMessage('Please accept the declaration before sending the driver request.', 'error');
+    return;
+  }
+
+  const message = [
+    'Hello QuickTrip, I want to join as a driver.',
+    `Driver Name: ${name}`,
+    `Phone Number: ${phone}`,
+    `District / Area: ${district}`,
+    `Vehicle Model: ${vehicle}`,
+    'Declaration: I confirm my details and documents are accurate to the best of my knowledge.'
+  ].join('\n');
+
+  const whatsappUrl = `https://wa.me/918409758097?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, '_blank');
+  setDriverFormMessage('Driver request opened in WhatsApp.', 'success');
+}
+</script>
+
+</body>
+</html>

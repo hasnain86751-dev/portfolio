@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickTrip | Dhanbad Booking</title>
+  <link rel="stylesheet" href="trail.css">
+</head>
+<body class="district-page dhanbad-theme">
+
+<header class="header district-header">
+  <div class="logo">Quick<span>Trip</span></div>
+  <nav class="nav">
+    <a href="trail.html">Home</a>
+    <a href="#services">Services</a>
+    <a href="#booking">Book Your Trip</a>
+    <a href="#cars">Cars</a>
+  </nav>
+</header>
+
+<section class="district-hero">
+  <div class="district-hero-content">
+    <p class="eyebrow">Dhanbad service area</p>
+    <h1>Dhanbad Ride Booking</h1>
+    <p>Book reliable cars for city travel, railway pickup, outstation plans, and wedding movement from Dhanbad.</p>
+  </div>
+</section>
+
+<section class="district-services" id="services">
+  <h2>Select Service in Dhanbad</h2>
+  <div class="service-box">
+    <button type="button" class="service-button active" onclick="selectService('Local Ride', this)">Local Ride</button>
+    <button type="button" class="service-button" onclick="selectService('Outstation Trip', this)">Outstation Trip</button>
+    <button type="button" class="service-button" onclick="selectService('Wedding Booking', this)">Wedding Booking</button>
+  </div>
+  <p id="serviceStatus" class="service-status">Selected service: Local Ride</p>
+</section>
+
+<section class="booking" id="booking">
+  <div class="booking-shell">
+    <div class="booking-copy">
+      <p class="eyebrow">Dhanbad quick booking</p>
+      <h2>Book Your Trip in Dhanbad</h2>
+      <p>Share your Dhanbad route, date, and preferred car. Only cars currently available in Dhanbad are shown below for booking.</p>
+    </div>
+    <form class="booking-form">
+      <input type="text" id="fromLocation" placeholder="From Location" required>
+      <input type="text" id="toLocation" placeholder="To Location" required>
+      <input type="date" id="travelDate" required>
+      <select id="car" required>
+        <option value="">Select Car in Dhanbad</option>
+        <option>Alto</option>
+        <option>Dzire</option>
+        <option>Ertiga</option>
+      </select>
+      <div class="map-actions">
+        <button type="button" class="map-btn" onclick="openGoogleMapsRoute()">Open in Google Maps</button>
+        <button type="button" class="map-btn secondary-map-btn" onclick="calculateTripDistance()">Check KM</button>
+      </div>
+      <p id="distanceResult" class="distance-result">Enter pickup and destination to check route distance.</p>
+      <label class="consent-check">
+        <input type="checkbox" id="bookingConsent">
+        <span>I agree to the <a href="privacy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms & Conditions</a>, and confirm the booking details are accurate.</span>
+      </label>
+      <button type="button" class="whatsapp-btn booking-submit" onclick="sendBookingRequest()">Send Booking Request</button>
+    </form>
+  </div>
+</section>
+
+<section class="cars-section" id="cars">
+  <h2>Available Cars in Dhanbad</h2>
+  <div class="car-grid">
+    <article class="car-card district-car-card">
+      <img src="assest/ALGO.jpg" alt="Alto car">
+      <div class="car-content">
+        <h3>Alto</h3>
+        <p>Best for short city rides and quick market trips in Dhanbad.</p>
+        <button type="button" class="book-button" onclick="sendWhatsApp('Alto')">Book Alto</button>
+      </div>
+    </article>
+
+    <article class="car-card district-car-card">
+      <img src="assest/DEZIRE.webp" alt="Dzire car">
+      <div class="car-content">
+        <h3>Dzire</h3>
+        <p>Comfortable sedan for station pickup, office rides, and outstation travel.</p>
+        <button type="button" class="book-button" onclick="sendWhatsApp('Dzire')">Book Dzire</button>
+      </div>
+    </article>
+
+    <article class="car-card district-car-card premium-card">
+      <img src="assest/ERTIGA.jpg" alt="Ertiga car">
+      <div class="car-content">
+        <h3>Ertiga</h3>
+        <p>Spacious family car for airport drops, group travel, and functions.</p>
+        <button type="button" class="book-button" onclick="sendWhatsApp('Ertiga')">Book Ertiga</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="legal-note-section compact-legal">
+  <div class="legal-note-box">
+    <h2>Important Notice</h2>
+    <p>QuickTrip is a technology-enabled booking and communication platform that helps customers connect with independent drivers for personal travel in Dhanbad.</p>
+    <p>QuickTrip does not own, lease, or operate the vehicles listed on this page and does not directly provide taxi or transportation services. Drivers remain independently responsible for permits, insurance, taxes, fitness, and compliance with applicable laws.</p>
+  </div>
+</section>
+
+<div class="back">
+  <a href="trail.html">Back to Home</a>
+</div>
+
+<script>
+const GOOGLE_MAPS_API_KEY = '';
+const city = 'Dhanbad';
+let selectedService = 'Local Ride';
+
+function getRouteLocations() {
+  const from = document.getElementById('fromLocation').value.trim();
+  const to = document.getElementById('toLocation').value.trim();
+  return { from, to };
+}
+
+function getGoogleMapsLink(from, to) {
+  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(from)}&destination=${encodeURIComponent(to)}&travelmode=driving`;
+}
+
+function setDistanceMessage(message, type) {
+  const result = document.getElementById('distanceResult');
+  result.textContent = message;
+  result.className = `distance-result ${type || ''}`.trim();
+}
+
+function selectService(service, button) {
+  selectedService = service;
+  document.getElementById('serviceStatus').innerText = `Selected service: ${service}`;
+  document.querySelectorAll('.service-button').forEach((item) => item.classList.remove('active'));
+  button.classList.add('active');
+}
+
+function openGoogleMapsRoute() {
+  const { from, to } = getRouteLocations();
+
+  if (!from || !to) {
+    setDistanceMessage('Please enter both From Location and To Location first.', 'error');
+    return;
+  }
+
+  const mapUrl = getGoogleMapsLink(from, to);
+  window.open(mapUrl, '_blank');
+  setDistanceMessage('Google Maps route opened in a new tab.', 'success');
+}
+
+function calculateTripDistance() {
+  const { from, to } = getRouteLocations();
+
+  if (!from || !to) {
+    setDistanceMessage('Please enter both From Location and To Location first.', 'error');
+    return;
+  }
+
+  if (!window.google || !google.maps || !google.maps.DistanceMatrixService) {
+    openGoogleMapsRoute();
+    setDistanceMessage('Direct Google Maps opened. Add a Google Maps API key to show automatic KM inside this page.', 'warning');
+    return;
+  }
+
+  const service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [from],
+      destinations: [to],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC
+    },
+    (response, status) => {
+      if (status !== 'OK' || !response.rows[0].elements[0] || response.rows[0].elements[0].status !== 'OK') {
+        setDistanceMessage('Unable to calculate distance right now. Please use Google Maps directly.', 'error');
+        return;
+      }
+
+      const element = response.rows[0].elements[0];
+      setDistanceMessage(`Approximate road distance: ${element.distance.text}. Estimated time: ${element.duration.text}.`, 'success');
+    }
+  );
+}
+
+function sendBookingRequest() {
+  const { from, to } = getRouteLocations();
+  const date = document.getElementById('travelDate').value;
+  const car = document.getElementById('car').value;
+  const consent = document.getElementById('bookingConsent').checked;
+  const distanceText = document.getElementById('distanceResult').textContent.trim();
+
+  if (!from || !to || !date || !car) {
+    setDistanceMessage('Please fill From Location, To Location, Travel Date, and Car first.', 'error');
+    return;
+  }
+
+  if (!consent) {
+    setDistanceMessage('Please accept the Privacy Policy and Terms & Conditions before sending the booking request.', 'error');
+    return;
+  }
+
+  const mapLink = getGoogleMapsLink(from, to);
+  const distanceLine = distanceText && !distanceText.startsWith('Enter pickup')
+    ? `Distance Details: ${distanceText}`
+    : 'Distance Details: Please check the Google Maps route link below.';
+
+  const message = [
+    'Hello QuickTrip, I want to book a trip in Dhanbad.',
+    `Selected Service: ${selectedService}`,
+    `From Location: ${from}`,
+    `To Location: ${to}`,
+    `Travel Date: ${date}`,
+    `Selected Car: ${car}`,
+    distanceLine,
+    `Google Maps Route: ${mapLink}`
+  ].join('\n');
+
+  const whatsappUrl = `https://wa.me/918409758097?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, '_blank');
+}
+
+function sendWhatsApp(car) {
+  const message = `Hello QuickTrip, I want to book ${car} for ${selectedService} in ${city}.`;
+  const url = `https://wa.me/918409758097?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+}
+
+if (GOOGLE_MAPS_API_KEY) {
+  const script = document.createElement('script');
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
+  script.async = true;
+  document.head.appendChild(script);
+}
+</script>
+
+</body>
+</html>

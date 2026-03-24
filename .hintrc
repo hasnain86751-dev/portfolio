@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "axe/forms": "off",
+    "disown-opener": "off",
+    "meta-viewport": "off",
+    "no-inline-styles": "off",
+    "axe/language": "off",
+    "compat-api/css": "off"
+  }
+}
